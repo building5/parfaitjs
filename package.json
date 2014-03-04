@@ -1,0 +1,50 @@
+{
+  "name": "parfait",
+  "version": "0.0.1",
+  "author": "David M. Lee, II <leedm777@yahoo.com>",
+  "description": "A sweet multi-layered configuration framework",
+  "homepage": "https://github.com/leedm777/parfait",
+  "scripts": {
+    "doc": "codo",
+    "lint": "coffeelint src test",
+    "test": "_mocha",
+    "test-coverage": "COVERAGE=true _mocha -R html-cov 'test/**/*.spec.coffee' > out/coverage.html",
+    "test-coverage-json": "COVERAGE=true _mocha -R json-cov 'test/**/*.spec.coffee' > out/coverage.json",
+    "test-watch": "_mocha --watch --reporter min 'test/**/*.spec.coffee'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leedm777/parfait.git"
+  },
+  "keywords": [
+    "configuration"
+  ],
+  "dependencies": {
+    "q": "^1.0.0",
+    "lodash": "^2.4.1",
+    "js-yaml": "^3.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^1.17.1",
+    "chai": "^1.9.0",
+    "blanket": "^1.1.6",
+    "coffee-script": "^1.7.1",
+    "chai-as-promised": "^4.1.0",
+    "mocha-as-promised": "^2.0.0",
+    "coffeelint": "^1.1.0",
+    "codo": "^2.0.6"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "config": {
+    "blanket": {
+      "loader": "./node-loaders/coffee-script",
+      "pattern": "src",
+      "data-cover-never": [
+        "node_modules"
+      ]
+    }
+  }
+}

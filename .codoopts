@@ -1,0 +1,7 @@
+--name       "Parfait.js"
+--readme     README.md
+--title      "Parfait Documentation"
+./src
+-
+LICENSE
+CHANGES.md

@@ -1,0 +1,43 @@
+{
+  "indentation": {
+    "_comment": "CoffeeLint can't process indents properly. See https://github.com/clutchski/coffeelint/issues/156",
+    "level": "ignore"
+  },
+  "arrow_spacing": {
+    "name": "arrow_spacing",
+    "level": "error"
+  },
+  "colon_assignment_spacing": {
+    "name": "colon_assignment_spacing",
+    "level": "error",
+    "spacing": {
+      "left": 0,
+      "right": 1
+    }
+  },
+  "no_empty_param_list": {
+    "name": "no_empty_param_list",
+    "level": "error"
+  },
+  "no_stand_alone_at": {
+    "name": "no_stand_alone_at",
+    "level": "error"
+  },
+  "space_operators": {
+    "name": "space_operators",
+    "level": "error"
+  },
+  "cyclomatic_complexity": {
+    "name": "cyclomatic_complexity",
+    "value": 10,
+    "level": "error"
+  },
+  "missing_fat_arrows": {
+    "name": "missing_fat_arrows",
+    "level": "ignore"
+  },
+  "non_empty_constructor_needs_parens": {
+    "name": "non_empty_constructor_needs_parens",
+    "level": "ignore"
+  }
+}

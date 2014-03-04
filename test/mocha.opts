@@ -1,0 +1,5 @@
+--ui bdd
+--reporter spec
+--check-leaks
+--timeout 5000
+--compilers coffee:coffee-script/register
