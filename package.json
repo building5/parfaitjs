@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "author": "David M. Lee, II <leedm777@yahoo.com>",
   "description": "A sweet multi-layered configuration framework",
-  "homepage": "https://github.com/leedm777/parfait",
+  "homepage": "https://github.com/building5/parfait",
   "scripts": {
     "doc": "codo",
     "lint": "coffeelint src test",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/leedm777/parfait.git"
+    "url": "https://github.com/building5/parfait.git"
   },
   "keywords": [
     "configuration"
