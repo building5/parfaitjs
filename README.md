@@ -22,6 +22,13 @@ on Unixes) and site config (`/etc/${appName}` on Unixes), and properly
 merge these configurations with the default configuration specified in
 the application itself.
 
+## Installation
+
+Parfait.js is [hosted on NPM][], so you can simply install it, and add
+it to your `package.json` as a dependency.
+
+    $ npm install --save parfait
+
 ## How it works
 
 In your application, simply invoke `parfait.configure()`. Its default
@@ -85,3 +92,5 @@ If appName (and appAuthor on Windows) is set:
 The tests in the test directory actually do a fairly good job showing
 an example configuration, and what the expected output from that
 configuration should be.
+
+ [hosted on NPM]: https://www.npmjs.org/package/parfait
