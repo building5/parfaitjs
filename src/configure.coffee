@@ -1,7 +1,7 @@
 Q = require 'q'
 path = require 'path'
 jsyaml = require 'js-yaml'
-appdirsDefault = require './appdirs'
+appdirsDefault = require 'appdirs'
 confmerge = require './confmerge'
 
 {readFile, stat, readdir} = require './fs-promise'
@@ -33,8 +33,9 @@ configure = ({environment, directory, config, appdirs}) ->
     .then (baseEnvConfig) ->
       parfait = baseEnvConfig.parfait || {}
 
-      siteDir = appdirs.siteDataDir(parfait.appName, parfait.appAuthor)
-      userDir = appdirs.userDataDir(parfait.appName, parfait.appAuthor)
+      if parfait.appName
+        siteDir = appdirs.siteDataDir(parfait.appName, parfait.appAuthor)
+        userDir = appdirs.userDataDir(parfait.appName, parfait.appAuthor)
 
       # Now the site config
       processDirectory siteDir, baseEnvConfig
