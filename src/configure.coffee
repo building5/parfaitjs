@@ -9,24 +9,24 @@ confmerge = require './confmerge'
 ###
   Process configuration files.
 
-  @param {String} environment
-  @param {String} directory
-  @param {*} config
+  @param {String} environment Environment to select.
+  @param {String} directory Directory to process configuration files.
+  @param {*} config Base configuration to start with.
   @param {appdirs} appdirs Methods `siteDataDir` and `userDataDir` for locating site and user data directories, respectively.
   @return {Promise<Object>} Consolidated configuration object.
 ###
-configure = ({environment, directory, config, appdirs}) ->
+configure = ({environment, directory, preConfig, appdirs}) ->
   environment ?= (process.env && process.env.NODE_ENV) || 'development'
   directory ?= 'config'
-  config ?= {}
+  preConfig ?= {}
   appdirs ?= appdirsDefault
 
   envDirectory = (dir) ->
     if dir
       path.join dir, "#{environment}.env"
 
-  # Apply the base config to the hard coded config
-  processDirectory directory, config
+  # Apply the base config to the hard coded preConfig
+  processDirectory directory, preConfig
     .then (baseConfig) ->
       # Now the environment specific base config
       processDirectory envDirectory(directory), baseConfig
