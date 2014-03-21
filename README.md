@@ -93,4 +93,22 @@ The tests in the test directory actually do a fairly good job showing
 an example configuration, and what the expected output from that
 configuration should be.
 
+## TODO
+
+ * Array append/prepend (either single item or another array)
+    # Append 'bar' to the array 'foo'
+    "foo+": "bar"
+    # Append 'bar', 'bam', 'bang' to the array 'foo'
+    "foo+": [ "bar", "bam", "bang" ]
+    # Prepend 'bar' to the array 'foo'
+    "+foo": "bar"
+ * Object replacement instead of merging
+    # Discard 'foo' and replace with empty object
+    "foo=": {}
+    # Discard 'foo' and replace with given object
+    "foo=": { "bar": 3.14159 }
+ * Individual key deleltion
+    # Remove 'foo'
+    "foo-": null
+
  [hosted on NPM]: https://www.npmjs.org/package/parfait
