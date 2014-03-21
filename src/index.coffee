@@ -3,5 +3,6 @@
 ###
 
 configure = require './configure'
+confmerge = require './confmerge'
 
-module.exports = { configure }
+module.exports = { configure, confmerge }
