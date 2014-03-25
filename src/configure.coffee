@@ -14,14 +14,16 @@ confmerge = require './confmerge'
 
   @param {String} environment Environment to select.
   @param {String} directory Directory to process configuration files.
-  @param {*} config Base configuration to start with.
+  @param {*} preConfig Base configuration to start with.
+  @param {*} postConfig Config to merge on top of final result.
   @param {appdirs} appdirs Methods `siteDataDir` and `userDataDir` for locating site and user data directories, respectively.
   @return {Promise<Object>} Consolidated configuration object.
 ###
-configure = ({environment, directory, preConfig, appdirs}) ->
+configure = ({environment, directory, preConfig, postConfig, appdirs}) ->
   environment ?= (process.env && process.env.NODE_ENV) || 'development'
   directory ?= 'config'
   preConfig ?= {}
+  postConfig ?= {}
   appdirs ?= appdirsDefault
 
   envDirectory = (dir) ->
@@ -51,6 +53,8 @@ configure = ({environment, directory, preConfig, appdirs}) ->
         .then (userConfig) ->
           # Now the environment specific user config
           processDirectory envDirectory(userDir), userConfig
+        .then (userEnvConfig) ->
+          confmerge userEnvConfig, postConfig
 
 ###
   Process a directory for configuration files, merging with baseConfig.

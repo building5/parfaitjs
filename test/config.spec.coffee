@@ -66,7 +66,7 @@ describe 'For sample configs', ->
         appAuthor: 'someAuthor'
     actual = parfait.configure {
       directory: 'test/site-user.config/base',
-      config:
+      preConfig:
         parfait:
           appName: 'someApp',
           appAuthor: 'someAuthor'
@@ -90,7 +90,7 @@ describe 'For sample configs', ->
     actual = parfait.configure {
       directory: 'test/env.config/base',
       environment: 'test',
-      config:
+      preConfig:
         parfait:
           appName: 'someApp',
           appAuthor: 'someAuthor'
