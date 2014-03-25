@@ -1,3 +1,6 @@
+# Copyright (c) 2014. David M. Lee, II <leedm777@yahoo.com>
+'use strict'
+
 fs = require 'fs'
 Q = require 'q'
 

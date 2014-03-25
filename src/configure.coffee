@@ -1,3 +1,6 @@
+# Copyright (c) 2014. David M. Lee, II <leedm777@yahoo.com>
+'use strict'
+
 Q = require 'q'
 path = require 'path'
 jsyaml = require 'js-yaml'

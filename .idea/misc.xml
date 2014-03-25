@@ -2,6 +2,8 @@
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
     <type id="JRUBY" />
+    <type id="Python" />
+    <type id="sass-stdlib" />
   </component>
   <component name="IdProvider" IDEtalkID="20364A77574125419E815085C6DCB674" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true">
