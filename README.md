@@ -50,7 +50,7 @@ var config = parfait.configure({
     config: {
       parfait: {
         // If specified, user and site config can be processed on Unixes
-        'appName': SuperApp',
+        'appName': 'SuperApp',
         // If specified, user and site config can be processed on Windows
         'appAuthor': 'Acme'
       }
