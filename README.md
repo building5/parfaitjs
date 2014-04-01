@@ -1,5 +1,7 @@
 # Parfait.js
 
+[![Build Status](https://travis-ci.org/building5/parfaitjs.svg)](https://travis-ci.org/building5/parfaitjs)
+
 A sweet multi-layered configuration framework.
 
 ## Dealing with complex configurations
