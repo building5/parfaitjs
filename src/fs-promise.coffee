@@ -1,8 +1,8 @@
 # Copyright (c) 2014. David M. Lee, II <leedm777@yahoo.com>
 'use strict'
 
+Promise = (require 'es6-promise').Promise
 fs = require 'fs'
-Q = require 'q'
 
 ###
   Read a UTF-8 text file, returning a promise with the file's contents.
@@ -12,7 +12,12 @@ Q = require 'q'
   @private
 ###
 readFile = (path) ->
-  Q.nfcall fs.readFile, path, 'utf-8'
+  new Promise (resolve, reject) ->
+    fs.readFile path, 'utf-8', (err, contents) ->
+      if (err)
+        reject err
+      else
+        resolve contents
 
 ###
   Promise returning version of `fs.stat`.
@@ -22,7 +27,12 @@ readFile = (path) ->
   @private
 ###
 stat = (path) ->
-  Q.nfcall fs.stat, path
+  new Promise (resolve, reject) ->
+    fs.stat path, (err, stat) ->
+      if (err)
+        reject err
+      else
+        resolve stat
 
 ###
   Promise returning version of `fs.readdir`.
@@ -32,6 +42,11 @@ stat = (path) ->
   @private
 ###
 readdir = (directory) ->
-  Q.nfcall fs.readdir, directory
+  new Promise (resolve, reject) ->
+    fs.readdir directory, (err, dir) ->
+      if (err)
+        reject err
+      else
+        resolve dir
 
 module.exports = {readFile, stat, readdir}

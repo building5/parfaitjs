@@ -1,14 +1,14 @@
 # Copyright (c) 2014. David M. Lee, II <leedm777@yahoo.com>
 'use strict'
 
-mocha = require 'mocha'
+Promise = (require 'es6-promise').Promise
 chai = require 'chai'
+chaiAsPromised = require 'chai-as-promised'
+mocha = require 'mocha'
+
 assert = chai.assert
 expect = chai.expect
-chaiAsPromised = require 'chai-as-promised'
-Q = require 'q'
-
-chai.Assertion.includeStack = true
+chai.config.includeStack = true
 
 chai.use chaiAsPromised
 require('mocha-as-promised')()

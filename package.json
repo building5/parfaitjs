@@ -20,20 +20,20 @@
     "configuration"
   ],
   "dependencies": {
-    "q": "^1.0.0",
-    "lodash": "^2.4.1",
-    "js-yaml": "^3.0.1",
     "appdirs": "^0.1.1",
-    "coffee-script": "^1.7.1"
+    "coffee-script": "^1.7.1",
+    "es6-promise": "^0.1.1",
+    "js-yaml": "^3.0.1",
+    "lodash": "^2.4.1"
   },
   "devDependencies": {
-    "mocha": "^1.17.1",
-    "chai": "^1.9.0",
     "blanket": "^1.1.6",
+    "chai": "^1.9.0",
     "chai-as-promised": "^4.1.0",
-    "mocha-as-promised": "^2.0.0",
+    "codo": "^2.0.6",
     "coffeelint": "^1.1.0",
-    "codo": "^2.0.6"
+    "mocha": "^1.17.1",
+    "mocha-as-promised": "^2.0.0"
   },
   "license": "MIT",
   "engines": {

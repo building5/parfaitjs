@@ -1,11 +1,11 @@
 # Copyright (c) 2014. David M. Lee, II <leedm777@yahoo.com>
 'use strict'
 
-Q = require 'q'
-path = require 'path'
-jsyaml = require 'js-yaml'
+Promise = (require 'es6-promise').Promise
 appdirsDefault = require 'appdirs'
 confmerge = require './confmerge'
+jsyaml = require 'js-yaml'
+path = require 'path'
 
 {readFile, stat, readdir} = require './fs-promise'
 
@@ -16,7 +16,8 @@ confmerge = require './confmerge'
   @param {String} directory Directory to process configuration files.
   @param {*} preConfig Base configuration to start with.
   @param {*} postConfig Config to merge on top of final result.
-  @param {appdirs} appdirs Methods `siteDataDir` and `userDataDir` for locating site and user data directories, respectively.
+  @param {appdirs} appdirs Methods `siteDataDir` and `userDataDir` for locating
+                           site and user data directories, respectively.
   @return {Promise<Object>} Consolidated configuration object.
 ###
 configure = ({environment, directory, preConfig, postConfig, appdirs}) ->
@@ -69,19 +70,19 @@ configure = ({environment, directory, preConfig, postConfig, appdirs}) ->
 ###
 processDirectory = (directory, baseConfig) ->
   if not directory
-    Q.fulfill baseConfig
+    Promise.resolve baseConfig
   else
     readdir directory
       .then (dir) ->
-        Q.all dir.map (file) -> process(directory, file)
+        Promise.all dir.map (file) -> process(directory, file)
       .then (res) ->
         res.reduce confmerge, baseConfig
-      .fail (err) ->
+      .catch (err) ->
         # Missing directories are fine; just return the base config
         if err.code != 'ENOENT'
           console.error "Error reading directory: #{err.message}"
           throw err
-        Q.fulfill baseConfig
+        Promise.resolve baseConfig
 
 
 ###
@@ -111,7 +112,7 @@ process = (basedir, file) ->
         res
   else if ext == '.env'
     # Environment; skip
-    Q.resolve {}
+    Promise.resolve {}
   else
     stat file
       .then (stats) ->
