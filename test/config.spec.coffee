@@ -1,20 +1,9 @@
 # Copyright (c) 2014. David M. Lee, II <leedm777@yahoo.com>
 'use strict'
 
-Promise = (require 'es6-promise').Promise
-chai = require 'chai'
-chaiAsPromised = require 'chai-as-promised'
-mocha = require 'mocha'
+expect = (require 'chai').expect
 
-assert = chai.assert
-expect = chai.expect
-chai.config.includeStack = true
-
-chai.use chaiAsPromised
-require('mocha-as-promised')()
-
-require './bootstrap'
-parfait = require '../src'
+parfait = require '..'
 
 class MockAppDirs
   constructor: (@basedir) ->

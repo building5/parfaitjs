@@ -7,10 +7,10 @@
   "scripts": {
     "doc": "codo",
     "lint": "coffeelint src test",
-    "test": "_mocha",
-    "test-coverage": "COVERAGE=true _mocha -R html-cov 'test/**/*.spec.coffee' > out/coverage.html",
-    "test-coverage-json": "COVERAGE=true _mocha -R json-cov 'test/**/*.spec.coffee' > out/coverage.json",
-    "test-watch": "_mocha --watch --reporter min 'test/**/*.spec.coffee'"
+    "test": "mocha",
+    "test-coverage": "COVERAGE=true mocha -R html-cov 'test/**/*.spec.coffee' > coverage.html",
+    "test-coverage-json": "COVERAGE=true mocha -R json-cov 'test/**/*.spec.coffee' > coverage.json",
+    "test-watch": "mocha --watch --reporter min 'test/**/*.spec.coffee'"
   },
   "repository": {
     "type": "git",
@@ -31,9 +31,8 @@
     "chai": "^1.9.0",
     "chai-as-promised": "^4.1.0",
     "codo": "^2.0.6",
-    "coffeelint": "^1.1.0",
-    "mocha": "^1.17.1",
-    "mocha-as-promised": "^2.0.0"
+    "coffeelint": "^1.2.0",
+    "mocha": "^1.18.2"
   },
   "license": "MIT",
   "engines": {
