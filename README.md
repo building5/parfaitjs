@@ -80,14 +80,15 @@ Configuration is processed starting with the most general configuration,
 overlaying it with the more specific configurations.
 
 0. The hard-coded config provided to `configure()`
-1. ${config} directory
-2. ${config}/${environment}.env directory
+1. `${config}` directory
+2. `${config}/${environment}`.env directory
 
-If appName (and appAuthor on Windows) is set:
-3. ${siteConfig} directory
-4. ${siteConfig}/${environment}.env directory
-5. ${userConfig} directory
-6. ${userConfig}/${environment}.env directory
+If `appName` (and `appAuthor` on Windows) is set:
+
+3. `${siteConfig} directory`
+4. `${siteConfig}/${environment}.env` directory
+5. `${userConfig} directory`
+6. `${userConfig}/${environment}.env` directory
 
 ## Examples
 
