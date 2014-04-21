@@ -32,7 +32,8 @@
     "chai-as-promised": "^4.1.0",
     "codo": "^2.0.6",
     "coffeelint": "^1.2.0",
-    "mocha": "^1.18.2"
+    "mocha": "^1.18.2",
+    "sinon": "^1.9.1"
   },
   "license": "MIT",
   "engines": {
