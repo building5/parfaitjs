@@ -11,7 +11,7 @@ fs = require 'fs'
   @return {Promise<String>} Contents of the file.
   @private
 ###
-readFile = (path) ->
+exports.readFile = (path) ->
   new Promise (resolve, reject) ->
     fs.readFile path, 'utf-8', (err, contents) ->
       if (err)
@@ -26,7 +26,7 @@ readFile = (path) ->
   @return {Promise<fs.Stat>} File's stat structure.
   @private
 ###
-stat = (path) ->
+exports.stat = (path) ->
   new Promise (resolve, reject) ->
     fs.stat path, (err, stat) ->
       if (err)
@@ -41,12 +41,10 @@ stat = (path) ->
   @return {Promise<Array<String>>} Filenames in the given directory.
   @private
 ###
-readdir = (directory) ->
+exports.readdir = (directory) ->
   new Promise (resolve, reject) ->
     fs.readdir directory, (err, dir) ->
       if (err)
         reject err
       else
         resolve dir
-
-module.exports = {readFile, stat, readdir}

@@ -50,13 +50,13 @@ describe 'For sample configs', ->
         'set-by-base': 'base'
         'set-by-user': 'user'
         'set-by-site': 'site'
-      parfait:
+      appdirs:
         appName: 'someApp',
         appAuthor: 'someAuthor'
     actual = parfait.configure {
       directory: 'test/site-user.config/base',
       preConfig:
-        parfait:
+        appdirs:
           appName: 'someApp',
           appAuthor: 'someAuthor'
       appdirs: new MockAppDirs('test/site-user.config')
@@ -72,7 +72,7 @@ describe 'For sample configs', ->
         'set-by-user-env': 'user-env'
         'set-by-site': 'site'
         'set-by-site-env': 'site-env'
-      parfait:
+      appdirs:
         appName: 'someApp',
         appAuthor: 'someAuthor'
 
@@ -80,7 +80,7 @@ describe 'For sample configs', ->
       directory: 'test/env.config/base',
       environment: 'test',
       preConfig:
-        parfait:
+        appdirs:
           appName: 'someApp',
           appAuthor: 'someAuthor'
       appdirs: new MockAppDirs('test/env.config')

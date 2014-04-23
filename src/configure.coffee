@@ -37,11 +37,13 @@ configure = ({environment, directory, preConfig, postConfig, appdirs}) ->
       # Now the environment specific base config
       processDirectory envDirectory(directory), baseConfig
     .then (baseEnvConfig) ->
-      parfait = baseEnvConfig.parfait || {}
+      appdirsConfig = baseEnvConfig.appdirs || {}
+      appName = appdirsConfig.appName
+      appAuthor = appdirsConfig.appAuthor
 
-      if parfait.appName
-        siteDir = appdirs.siteDataDir(parfait.appName, parfait.appAuthor)
-        userDir = appdirs.userDataDir(parfait.appName, parfait.appAuthor)
+      if appName
+        siteDir = appdirs.siteDataDir(appName, appAuthor)
+        userDir = appdirs.userDataDir(appName, appAuthor)
 
       # Now the site config
       processDirectory siteDir, baseEnvConfig

@@ -21,7 +21,6 @@ describe.skip 'The configureSync function', ->
   afterEach ->
     mock.verify()
 
-
   it 'should return plain objects', ->
     expected = someConfig: 'data'
     mock.expects('configure')
