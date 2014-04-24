@@ -2,7 +2,7 @@
 'use strict'
 
 Promise = (require 'es6-promise').Promise
-appdirsDefault = require 'appdirs'
+appdirs = require 'appdirs'
 confmerge = require './confmerge'
 jsyaml = require 'js-yaml'
 path = require 'path'
@@ -16,16 +16,13 @@ path = require 'path'
   @param {String} directory Directory to process configuration files.
   @param {*} preConfig Base configuration to start with.
   @param {*} postConfig Config to merge on top of final result.
-  @param {appdirs} appdirs Methods `siteDataDir` and `userDataDir` for locating
-                           site and user data directories, respectively.
   @return {Promise<Object>} Consolidated configuration object.
 ###
-configure = ({environment, directory, preConfig, postConfig, appdirs}) ->
+configure = ({environment, directory, preConfig, postConfig}) ->
   environment ?= (process.env && process.env.NODE_ENV) || 'development'
   directory ?= 'config'
   preConfig ?= {}
   postConfig ?= {}
-  appdirs ?= appdirsDefault
 
   envDirectory = (dir) ->
     if dir
@@ -37,25 +34,30 @@ configure = ({environment, directory, preConfig, postConfig, appdirs}) ->
       # Now the environment specific base config
       processDirectory envDirectory(directory), baseConfig
     .then (baseEnvConfig) ->
-      appdirsConfig = baseEnvConfig.appdirs || {}
-      appName = appdirsConfig.appName
-      appAuthor = appdirsConfig.appAuthor
+      app = baseEnvConfig.appdirs || {}
+      appName = app.appName
+      appAuthor = app.appAuthor
 
       if appName
-        siteDir = appdirs.siteDataDir(appName, appAuthor)
-        userDir = appdirs.userDataDir(appName, appAuthor)
+        a = new appdirs.AppDirs(appName, appAuthor)
+        app.siteConfigDir ?= a.siteConfigDir()
+        app.siteDataDir ?= a.siteDataDir()
+        app.userCacheDir ?= a.userCacheDir()
+        app.userConfigDir ?= a.userConfigDir()
+        app.userDataDir ?= a.userDataDir()
+        app.userLogDir ?= a.userLogDir()
 
       # Now the site config
-      processDirectory siteDir, baseEnvConfig
+      processDirectory app.siteConfigDir, baseEnvConfig
         .then (siteConfig) ->
           # Now the environment specific site config
-          processDirectory envDirectory(siteDir), siteConfig
+          processDirectory envDirectory(app.siteConfigDir), siteConfig
         .then (siteEnvConfig) ->
           # Now the user config
-          processDirectory userDir, siteEnvConfig
+          processDirectory app.userConfigDir, siteEnvConfig
         .then (userConfig) ->
           # Now the environment specific user config
-          processDirectory envDirectory(userDir), userConfig
+          processDirectory envDirectory(app.userConfigDir), userConfig
         .then (userEnvConfig) ->
           confmerge userEnvConfig, postConfig
 

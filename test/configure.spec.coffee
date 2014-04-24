@@ -51,15 +51,14 @@ describe 'For sample configs', ->
         'set-by-user': 'user'
         'set-by-site': 'site'
       appdirs:
-        appName: 'someApp',
-        appAuthor: 'someAuthor'
+        siteConfigDir: 'test/site-user.config/site',
+        userConfigDir: 'test/site-user.config/user'
     actual = parfait.configure {
       directory: 'test/site-user.config/base',
       preConfig:
         appdirs:
-          appName: 'someApp',
-          appAuthor: 'someAuthor'
-      appdirs: new MockAppDirs('test/site-user.config')
+          siteConfigDir: 'test/site-user.config/site',
+          userConfigDir: 'test/site-user.config/user'
     }
     expect(actual).to.eventually.deep.equal expected
 
@@ -73,16 +72,56 @@ describe 'For sample configs', ->
         'set-by-site': 'site'
         'set-by-site-env': 'site-env'
       appdirs:
-        appName: 'someApp',
-        appAuthor: 'someAuthor'
+        siteConfigDir: 'test/env.config/site',
+        userConfigDir: 'test/env.config/user'
 
     actual = parfait.configure {
       directory: 'test/env.config/base',
       environment: 'test',
       preConfig:
         appdirs:
-          appName: 'someApp',
-          appAuthor: 'someAuthor'
-      appdirs: new MockAppDirs('test/env.config')
+          siteConfigDir: 'test/env.config/site',
+          userConfigDir: 'test/env.config/user'
     }
     expect(actual).to.eventually.deep.equal expected
+
+  describe 'using AppDirs', ->
+    appdirs = require 'appdirs'
+    origAppDirs = null
+
+    before ->
+      origAppDirs = appdirs.AppDirs
+      appdirs.AppDirs = class
+        ctor: (appName, appAuthor) ->
+          expect(appName).to.equal('app-name')
+          expect(appAuthor).to.equal('app-author')
+
+        siteConfigDir: -> 'site-config'
+        siteDataDir: -> 'site-data'
+        userCacheDir: -> 'user-cache'
+        userConfigDir: -> 'user-config'
+        userDataDir: -> 'user-data'
+        userLogDir: -> 'user-log'
+
+    after ->
+      appdirs.AppDirs = origAppDirs
+
+    it 'should load in AppDirs', ->
+      expected =
+        appdirs:
+          appName: 'app-name'
+          appAuthor: 'app-author'
+          siteConfigDir: 'site-config'
+          siteDataDir: 'site-data'
+          userCacheDir: 'user-cache'
+          userConfigDir: 'user-config'
+          userDataDir: 'user-data'
+          userLogDir: 'user-log'
+
+      actual = parfait.configure {
+        preConfig:
+          appdirs:
+            appName: 'app-name'
+            appAuthor: 'app-author'
+      }
+      expect(actual).to.eventually.deep.equal expected
