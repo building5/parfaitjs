@@ -19,7 +19,7 @@ path = require 'path'
   @return {Promise<Object>} Consolidated configuration object.
 ###
 configure = ({environment, directory, preConfig, postConfig}) ->
-  environment ?= (process.env && process.env.NODE_ENV) || 'development'
+  environment ?= process.env.NODE_ENV || 'development'
   directory ?= 'config'
   preConfig ?= {}
   postConfig ?= {}
@@ -81,7 +81,7 @@ processDirectory = (directory, baseConfig) ->
   else
     readdir directory
       .then (dir) ->
-        Promise.all dir.map (file) -> process(directory, file)
+        Promise.all dir.map (file) -> processPath(directory, file)
       .then (res) ->
         res.reduce confmerge, baseConfig
       .catch (err) ->
@@ -101,7 +101,7 @@ processDirectory = (directory, baseConfig) ->
   @return {Promise<Object>} Resulting merged configuration.
   @private
 ###
-process = (basedir, file) ->
+processPath = (basedir, file) ->
   ext = path.extname file
   basename = path.basename file, ext
   file = path.join basedir, file

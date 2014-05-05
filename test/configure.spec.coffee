@@ -3,7 +3,7 @@
 
 expect = (require 'chai').expect
 
-parfait = require '..'
+parfait = require '../src'
 
 class MockAppDirs
   constructor: (@basedir) ->

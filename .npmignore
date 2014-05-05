@@ -1,6 +1,7 @@
 *.iml
 .idea/
-test/
-doc/
 coverage.html
 coverage.json
+doc/
+src/
+test/

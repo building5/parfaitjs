@@ -1,5 +1,4 @@
 /**
- * Helper for loading from JavaScript.
+ * Load the compiled JavaScript.
  */
-require('coffee-script/register');
-module.exports = require('./src');
+module.exports = require('./lib');

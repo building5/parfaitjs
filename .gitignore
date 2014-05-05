@@ -1,4 +1,6 @@
-node_modules/
-doc/
 coverage.html
 coverage.json
+doc/
+lib/
+node_modules/
+npm-debug.log
