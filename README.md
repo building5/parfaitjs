@@ -49,14 +49,17 @@ var config = parfait.configure({
 
     // Optionally, a hard-coded base config can be provided as a
     // starting point.
-    config: {
-      parfait: {
+    preConfig: {
+      appdirs: {
         // If specified, user and site config can be processed on Unixes
         'appName': 'SuperApp',
         // If specified, user and site config can be processed on Windows
         'appAuthor': 'Acme'
       }
     },
+
+    // And a hard coded config to apply on top of everything else.
+    //postConfig: {}
   });
 ```
 
