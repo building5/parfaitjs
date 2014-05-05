@@ -95,7 +95,7 @@ processDirectory = (directory, baseConfig) ->
 
   @param basedir Directory `file` is in.
   @param file Name of the file to parse.
-  @return {Promise<Object?} Resulting merged configuration.
+  @return {Promise<Object>} Resulting merged configuration.
   @private
 ###
 process = (basedir, file) ->
