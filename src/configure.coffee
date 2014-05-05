@@ -60,6 +60,9 @@ configure = ({environment, directory, preConfig, postConfig}) ->
           processDirectory envDirectory(app.userConfigDir), userConfig
         .then (userEnvConfig) ->
           confmerge userEnvConfig, postConfig
+    .then (finalConfig) ->
+      finalConfig.environment = environment
+      finalConfig
 
 ###
   Process a directory for configuration files, merging with baseConfig.

@@ -21,17 +21,18 @@ class MockAppDirs
 
 describe 'For sample configs', ->
   it 'should parse JSON', ->
-    expected = foo: bar: 'simple-json'
+    expected = environment: 'development', foo: bar: 'simple-json'
     actual = parfait.configure { directory: 'test/simple-json.config' }
     expect(actual).to.eventually.deep.equal expected
 
   it 'should parse YAML', ->
-    expected = foo: bar: 'simple-yaml'
+    expected = environment: 'development', foo: bar: 'simple-yaml'
     actual = parfait.configure { directory: 'test/simple-yaml.config' }
     expect(actual).to.eventually.deep.equal expected
 
   it 'should parse multi-file config', ->
     expected =
+      environment: 'development'
       foo: test: 'foo'
       bar: test: 'bar'
     actual = parfait.configure { directory: 'test/multi-file.config' }
@@ -39,6 +40,7 @@ describe 'For sample configs', ->
 
   it 'should parse subdir config', ->
     expected =
+      environment: 'development'
       foo: test: 'foo'
       bar: bam: test: 'bam'
     actual = parfait.configure { directory: 'test/subdir.config' }
@@ -46,6 +48,7 @@ describe 'For sample configs', ->
 
   it 'should parse site and user configs', ->
     expected =
+      environment: 'development',
       foo:
         'set-by-base': 'base'
         'set-by-user': 'user'
@@ -64,6 +67,7 @@ describe 'For sample configs', ->
 
   it 'should parse environment configs', ->
     expected =
+      environment: 'test',
       foo:
         'set-by-base': 'base'
         'set-by-base-env': 'base-env'
@@ -108,6 +112,7 @@ describe 'For sample configs', ->
 
     it 'should load in AppDirs', ->
       expected =
+        environment: 'development'
         appdirs:
           appName: 'app-name'
           appAuthor: 'app-author'
